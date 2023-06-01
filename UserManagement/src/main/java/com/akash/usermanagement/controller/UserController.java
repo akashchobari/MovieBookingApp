@@ -69,7 +69,7 @@ public class UserController {
 		final String token = generateToken(request);
 		System.out.println(token);
 		Map<String,String> map = new HashMap<>();
-		map.put("message", "user is successfully logged in.");
+		map.put("message", "User is successfully logged in.");
 		map.put("token", token);
 		return ResponseEntity.ok(map);
 	}
