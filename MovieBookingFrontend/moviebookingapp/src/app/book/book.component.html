@@ -1,0 +1,33 @@
+<form [formGroup]="bookingForm" class="form-container">
+    <mat-card class="card-styles">
+        <mat-card-header>
+            <mat-card-title>Book Tickets</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="card-content">
+                <div class="row">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Movie Name</mat-label>
+                            <input type="text" matInput required name="movieName" disabled>
+                            {{selectedMovie.movieName}}
+                        </mat-form-field>
+                </div>
+                <div class="row">
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Theatre Name</mat-label>
+                        <input type="text" matInput required name="theatreName" disabled>
+                        {{selectedMovie.theatreName}}
+                    </mat-form-field>
+                </div>
+                <div class="row">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>No of Tickets</mat-label>
+                            <input formControlName="noOfTickets" type="number" matInput required name="noOfTickets">
+                            <mat-error *ngIf="bookingForm.get('noOfTickets')?.invalid">Number of tickets is required.</mat-error>
+                        </mat-form-field>
+                </div>
+                <mat-card-actions>
+                    <button [disabled]="bookingForm.valid?'false':'true'" mat-raised-button color="primary" (click)="handleBookTicket()">Book</button>
+                </mat-card-actions>
+        </mat-card-content>
+    </mat-card>
+</form>

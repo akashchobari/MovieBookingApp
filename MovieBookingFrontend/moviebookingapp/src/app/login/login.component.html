@@ -1,0 +1,29 @@
+<form [formGroup]="loginForm" class="form-container">
+    <mat-card class="card-styles">
+        <mat-card-header>
+            <mat-card-title>Sign In</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="card-content">
+                <div class="row">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Username</mat-label>
+                            <input formControlName="userName" type="text" matInput required name="userName">
+                            <mat-error *ngIf="loginForm.get('userName')?.invalid">Username is required.</mat-error>
+                        </mat-form-field>
+                </div>
+                <div class="row">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Password</mat-label>
+                            <input formControlName="password" type="password" matInput required name="password">
+                            <mat-error *ngIf="loginForm.get('password')?.invalid">Password is required.</mat-error>
+                        </mat-form-field>
+                </div>
+                <mat-card-actions>
+                    <button [disabled]="loginForm.valid?'false':'true'" (click)="doLogin()" mat-raised-button color="primary">Login</button>
+                </mat-card-actions>
+                <hr>
+                <p>New around here? <a href="/register">Sign Up</a></p>
+                <a href="/forgot-password">forgot password?</a>
+        </mat-card-content>
+    </mat-card>
+</form>

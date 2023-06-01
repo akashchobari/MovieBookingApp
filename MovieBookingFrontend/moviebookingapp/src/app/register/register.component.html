@@ -1,0 +1,102 @@
+<form [formGroup]="userProfileForm" class="form-container">
+    <mat-card class="card-styles">
+        <mat-card-header>
+            <mat-card-title>Register</mat-card-title>
+        </mat-card-header>
+        <mat-card-content class="card-content">
+                <div class="row">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>First Name</mat-label>
+                            <input formControlName="firstName" type="text" matInput required name="firstName">
+                            <mat-error *ngIf="userProfileForm.get('firstName')?.invalid">First Name is required.</mat-error>
+                        </mat-form-field>
+                </div>
+
+                <div class="row">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Last Name</mat-label>
+                            <input formControlName="lastName" type="text" matInput required name="lastName">
+                            <mat-error *ngIf="userProfileForm.get('lastName')?.invalid">Last Name is required.</mat-error>
+                        </mat-form-field>
+                </div>
+
+                <div class="row">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Username</mat-label>
+                            <input formControlName="userName" type="text" matInput required name="username">
+                            <mat-error *ngIf="userProfileForm.get('userName')?.invalid">Username is required.</mat-error>
+                        </mat-form-field>
+                </div>
+
+                <div class="row">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Password</mat-label>
+                            <input formControlName="password" type="password" matInput required name="password">
+                            <mat-error *ngIf="userProfileForm.get('password')?.invalid">Password is required.</mat-error>
+                        </mat-form-field>
+                </div>
+
+                <div class="row">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Email</mat-label>
+                            <input formControlName="email" type="email" matInput required name="email">
+                            <mat-error *ngIf="userProfileForm.get('email')?.invalid">Email is required.</mat-error>
+                        </mat-form-field>
+                </div>
+
+                <div class="row">    
+                        <!-- <mat-label>Gender</mat-label> -->
+                        <mat-radio-group formControlName="gender" aria-label="Select an option" class="margin-left">
+                            <mat-radio-button value="male">Male</mat-radio-button>
+                            <mat-radio-button value="female">Female</mat-radio-button>
+                        </mat-radio-group>
+                        <mat-error *ngIf="userProfileForm.get('gender')?.invalid">Gender is required.</mat-error>
+                </div>
+            
+                <div class="row">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Role</mat-label>
+                            <input type="text" matInput value="CUSTOMER" name="userRole" disabled/>
+                        </mat-form-field>
+                </div>
+
+                <div class="row">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Choose a date</mat-label>
+                            <input matInput [matDatepicker]="picker" formControlName="dob">
+                            <mat-hint>MM/DD/YYYY</mat-hint>
+                            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker></mat-datepicker>
+                        </mat-form-field>
+                </div>
+
+                <div class="row">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Secret Question</mat-label>
+                            <input formControlName="secretQuestion" type="text" matInput required name="secretQuestion">
+                            <mat-error *ngIf="userProfileForm.get('secretQuestion')?.invalid">Secret Question is required.</mat-error>
+                        </mat-form-field>
+                </div>
+
+                <div class="row">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Secret Answer</mat-label>
+                            <input formControlName="secretAnswer" type="text" matInput required name="secretAnswer">
+                            <mat-error *ngIf="userProfileForm.get('secretAnswer')?.invalid">SecretAnswer is required.</mat-error>
+                        </mat-form-field>
+                </div>
+
+                <div class="row">
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Mobile Number</mat-label>
+                            <input formControlName="mobileNumber" type="text" matInput placeholder="Enter mobile number" required name="mobileNumber">
+                            <mat-error *ngIf="userProfileForm.get('mobileNumber')?.invalid">Mobile Number is required.</mat-error>
+                        </mat-form-field>
+                </div>
+            </mat-card-content>
+            <mat-card-actions>
+                <button [disabled]="userProfileForm.valid?'false':'true'" (click)="saveForm()" mat-raised-button color="primary">Save</button>
+            </mat-card-actions>
+        </mat-card>
+</form>
+        
