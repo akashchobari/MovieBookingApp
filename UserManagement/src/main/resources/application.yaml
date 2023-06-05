@@ -3,9 +3,9 @@ server:
   
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/usermanagementdb?createDatabaseIfNotExists=true
+    url: jdbc:mysql://moviedb-akash.c918bifp8fik.us-west-2.rds.amazonaws.com
     username: root
-    password: pass@word1
+    password: password123
     
   jpa:
     hibernate:

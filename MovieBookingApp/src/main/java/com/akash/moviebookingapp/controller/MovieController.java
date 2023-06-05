@@ -4,9 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -46,14 +43,14 @@ public class MovieController {
 	public ResponseEntity<?> getAllMovies(){
 		List<Movie> movies =movieBookingService.getAllMovies();
 		if(movies.size()==0)
-			return new ResponseEntity<String>("movies not found", HttpStatus.NOT_FOUND);
+			return new ResponseEntity<String>("Movies not found", HttpStatus.NOT_FOUND);
 		return ResponseEntity.ok(movies);
 	}
 	@GetMapping("/movies/search/{movieId}")
 	public ResponseEntity<?> getMovieById(@PathVariable("movieId") int movieId){
 		Optional<Movie> movie = movieBookingService.getMovieById(movieId);
 		if(movie.isEmpty())
-			return new ResponseEntity<String>("movie not found", HttpStatus.NOT_FOUND);
+			return new ResponseEntity<String>("Movie not found", HttpStatus.NOT_FOUND);
 		return ResponseEntity.ok(movie);
 
 	}
@@ -74,34 +71,34 @@ public class MovieController {
 		final String subject = claims.getSubject();
 		//get user by subject(name) and check the role if admin then only allow else throw exception not authorized
 		User user = getUser(subject);
-		if(user.getUserRole().equals("Admin")) {
+		if(user.getUserRole().equalsIgnoreCase("ADMIN")) {
 			try {
 				movie.setStatus("AVAILABLE");
 				movieBookingService.addMovie(adminName, movie);
 			} catch(Exception ex) {
 				return new ResponseEntity<String>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 			}
-			return ResponseEntity.ok("movie added successfully");
+			return ResponseEntity.ok("Movie added successfully");
 		}
-		return new ResponseEntity<String>("you are not authorized to access this page", HttpStatus.UNAUTHORIZED);			
+		return new ResponseEntity<String>("You are not authorized to access this page", HttpStatus.UNAUTHORIZED);			
 	}
 	
 	@DeleteMapping("/{admin}/delete/{movieId}")
 	public ResponseEntity<?> deleteMovieById(@PathVariable("admin") String admin, @PathVariable("movieId") int movieId, HttpServletRequest req){
-		System.out.println(movieId);
+//		System.out.println(movieId);
 		Claims claims = (Claims)req.getAttribute("username"); 
 		final String subject = claims.getSubject();
 		//get user by subject(name) and check the role if admin then only allow else throw exception not authorized
 		User user = getUser(subject);
-		if(user.getUserRole().equals("Admin")) {
+		if(user.getUserRole().equalsIgnoreCase("ADMIN")) {
 			try {
 				movieBookingService.deleteMovie(admin, movieId);
 			} catch(Exception ex) {
 				return new ResponseEntity<String>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 			}
-			return ResponseEntity.ok("movie deleted successfully");		
+			return ResponseEntity.ok("Movie deleted successfully");		
 		}
-		return new ResponseEntity<String>("you are not authorized to access this page", HttpStatus.UNAUTHORIZED);
+		return new ResponseEntity<String>("You are not authorized to access this page", HttpStatus.UNAUTHORIZED);
 	}
 
 	

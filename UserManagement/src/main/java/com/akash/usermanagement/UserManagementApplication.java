@@ -18,7 +18,7 @@ public class UserManagementApplication {
 	public FilterRegistrationBean jwtFilter() {
 		FilterRegistrationBean fb = new FilterRegistrationBean();
 		fb.setFilter(new JwtFilter());
-		fb.addUrlPatterns("/api/v1/**");
+		fb.addUrlPatterns("/api/v1/*");
 		return fb;
 	}
 }

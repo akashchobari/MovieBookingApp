@@ -21,11 +21,11 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void login(LoginRequest request) {
-		System.out.println(request.getUserName());
-		System.out.println(request.getPassword());
+//		System.out.println(request.getUserName());
+//		System.out.println(request.getPassword());
 		User user = userRepo.findByUserName(request.getUserName());
-		System.out.println(user.getUserName());
-		System.out.println(user.getPassword());
+//		System.out.println(user.getUserName());
+//		System.out.println(user.getPassword());
 		if(!user.getPassword().equals(request.getPassword())) {
 			throw new InvalidLoginAttemptException();
 		}

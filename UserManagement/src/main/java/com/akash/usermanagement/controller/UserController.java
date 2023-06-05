@@ -47,7 +47,7 @@ public class UserController {
 			ex.printStackTrace();
 			return new ResponseEntity<String>(ex.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return ResponseEntity.ok("registration successful");
+		return ResponseEntity.ok("Registration Successful");
 	}
 	
 	public String generateToken(LoginRequest request) {
@@ -60,16 +60,18 @@ public class UserController {
 	@PostMapping("/login")
 	public ResponseEntity<?> handleLogin(@RequestBody LoginRequest request){
 		System.out.println("inside login");
+		
 		try {
 			userService.login(request);			
 		}catch(Exception ex) {
 			System.out.println("inside exception");
+			ex.printStackTrace();
 			return new ResponseEntity<String>(ex.getMessage(), HttpStatus.UNAUTHORIZED);
 		}
 		final String token = generateToken(request);
-		System.out.println(token);
+//		System.out.println(token);
 		Map<String,String> map = new HashMap<>();
-		map.put("message", "User is successfully logged in.");
+		map.put("message", "User is Successfully logged in.");
 		map.put("token", token);
 		return ResponseEntity.ok(map);
 	}
@@ -83,7 +85,7 @@ public class UserController {
 	public ResponseEntity<String> handleForgotPassword(@PathVariable("userName") String username){
 		final String secretQuestion = userService.forgotPassword(username);
 		if(secretQuestion==null)
-			return new ResponseEntity<String>("invalid input", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<String>("Invalid Input", HttpStatus.BAD_REQUEST);
 		return ResponseEntity.ok(secretQuestion);
 	}
 	
@@ -96,11 +98,11 @@ public class UserController {
 			try {
 				userService.updatePassword(username, newPwd);				
 			}catch(Exception ex) {
-				return new ResponseEntity<String>("cannot update password, please try again!", HttpStatus.INTERNAL_SERVER_ERROR);
+				return new ResponseEntity<String>("Cannot update password, please try again!", HttpStatus.INTERNAL_SERVER_ERROR);
 			}
-			return ResponseEntity.ok("successfully updated password");
+			return ResponseEntity.ok("Successfully updated password");
 		}
-		return new ResponseEntity<String>("invalid credentials", HttpStatus.UNAUTHORIZED);
+		return new ResponseEntity<String>("Invalid credentials", HttpStatus.UNAUTHORIZED);
 	}
 	
 }

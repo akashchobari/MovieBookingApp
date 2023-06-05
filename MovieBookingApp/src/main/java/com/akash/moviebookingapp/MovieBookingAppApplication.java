@@ -10,6 +10,8 @@ import org.springframework.web.servlet.mvc.support.DefaultHandlerExceptionResolv
 
 import com.akash.moviebookingapp.config.JwtFilter;
 
+import jakarta.servlet.DispatcherType;
+
 @SpringBootApplication
 public class MovieBookingAppApplication {
 
@@ -30,9 +32,4 @@ public class MovieBookingAppApplication {
 		return new RestTemplate();
 	}
 	
-	@Bean
-	public HandlerExceptionResolver getExceptionResolver() {
-		return new DefaultHandlerExceptionResolver();
-	}
-
 }
