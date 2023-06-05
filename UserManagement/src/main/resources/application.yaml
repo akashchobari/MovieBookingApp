@@ -3,7 +3,7 @@ server:
   
 spring:
   datasource:
-    url: jdbc:mysql://moviedb-akash.c918bifp8fik.us-west-2.rds.amazonaws.com
+    url: jdbc:mysql://moviedb-akash.c918bifp8fik.us-west-2.rds.amazonaws.com:3306/userdb
     username: root
     password: password123
     
