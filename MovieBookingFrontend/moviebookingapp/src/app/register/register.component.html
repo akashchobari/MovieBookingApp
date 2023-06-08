@@ -7,32 +7,41 @@
                 <div class="row">
                         <mat-form-field class="example-full-width">
                             <mat-label>First Name</mat-label>
-                            <input formControlName="firstName" type="text" matInput required name="firstName">
-                            <mat-error *ngIf="userProfileForm.get('firstName')?.invalid">First Name is required.</mat-error>
+                            <input formControlName="firstName" type="text" matInput required minlength="3" maxlength="15" name="firstName">
+                            <mat-error *ngIf="userProfileForm.get('firstName')?.errors?.['required']">First Name is required.</mat-error>
+                            <mat-error *ngIf="userProfileForm.get('firstName')?.errors?.['minlength']">Minimum 3 characters is required.</mat-error>
+                            <mat-error *ngIf="userProfileForm.get('firstName')?.errors?.['maxlength']">Maximum 15 characters is required.</mat-error>
                         </mat-form-field>
                 </div>
 
                 <div class="row">
                         <mat-form-field class="example-full-width">
                             <mat-label>Last Name</mat-label>
-                            <input formControlName="lastName" type="text" matInput required name="lastName">
-                            <mat-error *ngIf="userProfileForm.get('lastName')?.invalid">Last Name is required.</mat-error>
+                            <input formControlName="lastName" type="text" matInput required minlength="3" maxlength="15" name="lastName">
+                            <mat-error *ngIf="userProfileForm.get('lastName')?.errors?.['required']">Last Name is required.</mat-error>
+                            <mat-error *ngIf="userProfileForm.get('lastName')?.errors?.['minlength']">Minimum 3 characters is required.</mat-error>
+                            <mat-error *ngIf="userProfileForm.get('lastName')?.errors?.['maxlength']">Maximum 15 characters is required.</mat-error>
                         </mat-form-field>
                 </div>
 
                 <div class="row">
                         <mat-form-field class="example-full-width">
                             <mat-label>Username</mat-label>
-                            <input formControlName="userName" type="text" matInput required name="username">
-                            <mat-error *ngIf="userProfileForm.get('userName')?.invalid">Username is required.</mat-error>
+                            <input formControlName="userName" type="text" matInput required minlength="3" maxlength="15" name="username">
+                            <mat-error *ngIf="userProfileForm.get('userName')?.errors?.['required']">Username is required.</mat-error>
+                            <mat-error *ngIf="userProfileForm.get('userName')?.errors?.['minlength']">Minimum 3 characters is required.</mat-error>
+                            <mat-error *ngIf="userProfileForm.get('userName')?.errors?.['maxlength']">Maximum 15 characters is required.</mat-error>
                         </mat-form-field>
                 </div>
 
                 <div class="row">
                         <mat-form-field class="example-full-width">
                             <mat-label>Password</mat-label>
-                            <input formControlName="password" type="password" matInput required name="password">
-                            <mat-error *ngIf="userProfileForm.get('password')?.invalid">Password is required.</mat-error>
+                            <input formControlName="password" type="password" matInput required name="password" pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*_=+-]).{8,12}$">
+                            <mat-error *ngIf="userProfileForm.get('password')?.errors?.['required']">Password is required.</mat-error>
+                            <mat-error *ngIf="userProfileForm.get('password')?.errors?.['pattern']">Atleast 1 Uppercase, 1 Lowercase, 1 Number, 1 Symbol required.</mat-error>    
+                            <mat-error *ngIf="userProfileForm.get('password')?.errors?.['minlength']">Minimum 8 characters required.</mat-error>
+                            <mat-error *ngIf="userProfileForm.get('password')?.errors?.['maxlength']">Maximum 12 characters required.</mat-error>
                         </mat-form-field>
                 </div>
 
@@ -62,7 +71,7 @@
 
                 <div class="row">
                         <mat-form-field class="example-full-width">
-                            <mat-label>Choose a date</mat-label>
+                            <mat-label>Choose Date of Birth</mat-label>
                             <input matInput [matDatepicker]="picker" formControlName="dob">
                             <mat-hint>MM/DD/YYYY</mat-hint>
                             <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>

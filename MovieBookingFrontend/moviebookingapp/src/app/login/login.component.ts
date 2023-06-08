@@ -33,6 +33,8 @@ export class LoginComponent {
         error: (errorObj)=>{
           if(errorObj.status==401)
             alert("Please enter valid credentials");
+          else 
+            alert("internal server error: 500, please try again");
         }
       })
   }

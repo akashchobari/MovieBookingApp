@@ -16,11 +16,11 @@ export class MovieService {
     console.log(sessionStorage.getItem("authToken") as string);
     let headers = new HttpHeaders();
     headers.set("Authorization","Bearer "+sessionStorage.getItem('authToken' as string));
-    return this.http.get<Movie[]>("http://localhost:8081/api/v1/moviebooking/all", {headers: {'Authorization':"Bearer "+sessionStorage.getItem('authToken')}});
+    return this.http.get<Movie[]>("https://wg6zgh6lhh.execute-api.us-west-2.amazonaws.com/v1/movieresource/getallmovies", {headers: {'Authorization':"Bearer "+sessionStorage.getItem('authToken')}});
   }
 
   bookTickets(movieName:string,movieId:number, numberOfTickets:number){
-    return this.http.post("http://localhost:8081/api/v1/moviebooking/"+movieName+"/book",{movieId, numberOfTickets}, {headers:{"Authorization": "Bearer "+sessionStorage.getItem('authToken')}, responseType:"text"});
+    return this.http.post("https://wg6zgh6lhh.execute-api.us-west-2.amazonaws.com/v1/movieresource/book/"+movieName,{movieId, numberOfTickets}, {headers:{"Authorization": "Bearer "+sessionStorage.getItem('authToken')}, responseType:"text"});
   }
 
   getFilteredMovies(searchName:string, movies:Movie[]){
@@ -34,10 +34,10 @@ export class MovieService {
   }
 
   deleteMovie(movieId:number){
-    return this.http.delete("http://localhost:8081/api/v1/moviebooking/admin/delete/"+movieId,{headers: {'Authorization':"Bearer "+sessionStorage.getItem('authToken')}, responseType:"text"});
+    return this.http.delete("https://wg6zgh6lhh.execute-api.us-west-2.amazonaws.com/v1/movieresource/deletemovie/"+movieId,{headers: {'Authorization':"Bearer "+sessionStorage.getItem('authToken')}, responseType:"text"});
   }
 
   addMovie(movie:any){
-    return this.http.post("http://localhost:8081/api/v1/moviebooking/admin/addmovie",movie,{headers: {'Authorization':"Bearer "+sessionStorage.getItem('authToken')}, responseType:"text"});
+    return this.http.post(" https://wg6zgh6lhh.execute-api.us-west-2.amazonaws.com/v1/movieresource/addmovie/"+sessionStorage.getItem("userName"),movie,{headers: {'Authorization':"Bearer "+sessionStorage.getItem('authToken')}, responseType:"text"});
   }
 }
